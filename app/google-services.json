@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "464767703081",
+    "project_id": "example-ed7cd",
+    "storage_bucket": "example-ed7cd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464767703081:android:3fc2d41763e19d485b6438",
+        "android_client_info": {
+          "package_name": "com.example.gitae"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzSgAbJQpVo_kE5mx0VpPZubPqyeO4wsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
