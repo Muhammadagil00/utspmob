@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Gitae"
         tools:targetApi="31">
         <activity
+            android:name=".SupTransaction"
+            android:exported="false" />
+        <activity
+            android:name=".CatatanKeuangan"
+            android:exported="false" />
+        <activity
+            android:name=".Transaksii"
+            android:exported="false" />
+        <activity
             android:name=".TransferAdapter"
             android:exported="false" />
         <activity

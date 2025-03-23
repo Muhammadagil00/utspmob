@@ -50,6 +50,7 @@
                     android:layout_gravity="center"/>
 
                 <ImageButton
+                    android:id="@+id/CatatanKeuangan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/wallet_svgrepo_com"
@@ -58,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Transfer"
+                    android:text="CatatanKeuangan"
                     android:layout_gravity="center"/>
             </LinearLayout>
 
@@ -117,7 +118,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/agil"/>
+                        android:src="@drawable/bagxin"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -128,7 +129,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="asadsdafdsfergd"
+                            android:text="SENBAGAI ALAT PENYIMPANAN UANG  YANG LEBIH TERJAMIN"
                             android:textStyle="bold"
                             android:textSize="18dp"/>
 
@@ -156,7 +157,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/memem"/>
+                        android:src="@drawable/ifaa"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -167,7 +168,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="asadsdafdsfergd"/>
+                            android:text="SEBAGAI ALAT PEMBAYARAN"
+                            android:textStyle="bold"
+                            />
 
 
                     </LinearLayout>

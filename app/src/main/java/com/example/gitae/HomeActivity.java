@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -39,8 +40,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if(id == R.id.action_home){
-                    return  true;
+                if (id == R.id.action_home) {
+                    return true;
                 } else if (id == R.id.action_profile) {
                     startActivity(new Intent(HomeActivity.this, Profile.class));
                     return true;
@@ -52,8 +53,14 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         transfer = findViewById(R.id.transfer);
-        transfer.setOnClickListener(view->{
+        transfer.setOnClickListener(view -> {
             startActivity(new Intent(HomeActivity.this, TranferActivity.class));
         });
+        transfer = findViewById(R.id.CatatanKeuangan);
+        transfer.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, CatatanKeuangan.class));
+        });
+
+
     }
 }
