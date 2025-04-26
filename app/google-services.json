@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "464767703081",
-    "project_id": "example-ed7cd",
-    "storage_bucket": "example-ed7cd.firebasestorage.app"
+    "project_number": "821052063044",
+    "firebase_url": "https://pbuts-4d4f3-default-rtdb.firebaseio.com",
+    "project_id": "pbuts-4d4f3",
+    "storage_bucket": "pbuts-4d4f3.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:464767703081:android:3fc2d41763e19d485b6438",
+        "mobilesdk_app_id": "1:821052063044:android:85f855f6d74416e17d2b11",
         "android_client_info": {
           "package_name": "com.example.gitae"
         }
@@ -15,7 +16,26 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDzSgAbJQpVo_kE5mx0VpPZubPqyeO4wsQ"
+          "current_key": "AIzaSyAtr9QT6yejEaGqE9uM38xqBHj3xJFpBoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821052063044:android:71b44c0f3ff6135f7d2b11",
+        "android_client_info": {
+          "package_name": "com.example.pb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtr9QT6yejEaGqE9uM38xqBHj3xJFpBoE"
         }
       ],
       "services": {

@@ -14,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.gitae.models.SignUp;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -48,12 +49,20 @@ public class MainActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                startActivity(new Intent());
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            }
+        });
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SignUp.class);
                 startActivity(intent);
             }
         });
 
-        btLogin.setOnClickListener(view -> {
+
+      btLogin.setOnClickListener(view -> {
             String email, password;
             email = String.valueOf(emailUser.getText());
             password = String.valueOf(passwordUser.getText());
@@ -61,11 +70,13 @@ public class MainActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            // Kalau login sukses, langsung ke Home
                             Toast.makeText(getApplicationContext(), "Login berhasil", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
+                            // Kalau login gagal
                             Toast.makeText(MainActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
                         }
                     });

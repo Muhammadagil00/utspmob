@@ -13,14 +13,14 @@
         android:theme="@style/Theme.Gitae"
         tools:targetApi="31">
         <activity
-            android:name=".SupTransaction"
+            android:name=".AddTask"
             android:exported="false" />
-        <activity
-            android:name=".CatatanKeuangan"
-            android:exported="false" />
-        <activity
-            android:name=".Transaksii"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".CatatanKeuangan"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".T"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".TransferAdapter"
             android:exported="false" />
@@ -37,7 +37,7 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".models.SignUp"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

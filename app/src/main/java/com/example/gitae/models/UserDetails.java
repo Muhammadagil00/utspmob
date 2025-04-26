@@ -1,7 +1,7 @@
 package com.example.gitae.models;
 
 public class UserDetails {
-    private String userId, username, userEmail, userPassword, userNIM;
+    public String userId, username, userEmail, userPassword, userNIM;
 
     public UserDetails(){
     }
@@ -13,7 +13,6 @@ public class UserDetails {
     public void setUsername(String username) {
         this.username = username;
     }
-
     public String getUserId() {
         return userId;
     }

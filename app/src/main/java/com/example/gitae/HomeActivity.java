@@ -1,12 +1,11 @@
+// HomeActivity.java
 package com.example.gitae;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -14,53 +13,122 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.gitae.models.MyAdapter;
+import com.example.gitae.models.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    BottomNavigationView view;
-    ImageButton transfer;
-
+    ImageView profile;
+    ImageView addTask, settings;
+    FirebaseAuth auth;
+    FirebaseUser fUser;
+    DatabaseReference databaseReference;
+    MyAdapter myAdapter;
+    List<Task> myTask;
+    RecyclerView recyclerView;
+    TextView pending;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
+
+        // Inisialisasi view
+        recyclerView = findViewById(R.id.daftarTugas);
+        profile = findViewById(R.id.userIcon);
+        addTask = findViewById(R.id.addTask);
+        pending = findViewById(R.id.pending);
+
+        // Setup Firebase
+        auth = FirebaseAuth.getInstance();
+        fUser = auth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
+        // Setup RecyclerView
+        myTask = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        myAdapter = new MyAdapter(this, myTask);
+        recyclerView.setAdapter(myAdapter);
+
+        // Ambil UID dan load data task
+        if (fUser != null) {
+            String uid = fUser.getUid();
+            fUser = auth.getCurrentUser();
+            if (fUser == null) {
+                startActivity(new Intent(HomeActivity.this, MainActivity.class));
+                finish();
+                return;
+            }
+
+
+            // Listener update list tugas
+            databaseReference.child(uid).child("task").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    myTask.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Task task = dataSnapshot.getValue(Task.class);
+                        myTask.add(task);
+                    }
+                    myAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    System.out.println("Firebase error: " + error.getMessage());
+                }
+            });
+
+            // Listener update jumlah pending
+            databaseReference.child(uid).child("task").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    long jumlahData = snapshot.getChildrenCount();
+                    pending.setText(String.valueOf(jumlahData));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
+
+        // Atur padding untuk sistem bar
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        view = findViewById(R.id.bottom_navigation);
-
-        view.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                if (id == R.id.action_home) {
-                    return true;
-                } else if (id == R.id.action_profile) {
-                    startActivity(new Intent(HomeActivity.this, Profile.class));
-                    return true;
-                } else if (id == R.id.action_settings) {
-                    startActivity(new Intent(HomeActivity.this, Settings.class));
-                }
-                return false;
-            }
+        // Event klik ikon profil
+        profile.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, Profile.class);
+            startActivity(intent);
         });
 
-        transfer = findViewById(R.id.transfer);
-        transfer.setOnClickListener(view -> {
-            startActivity(new Intent(HomeActivity.this, TranferActivity.class));
-        });
-        transfer = findViewById(R.id.CatatanKeuangan);
-        transfer.setOnClickListener(view -> {
-            startActivity(new Intent(HomeActivity.this, CatatanKeuangan.class));
+        // Event klik tombol tambah tugas
+        addTask.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, AddTask.class);
+            startActivity(intent);
         });
 
-
+        settings = findViewById(R.id.Setting);
+        settings.setOnClickListener(view ->{
+            startActivity(new Intent(HomeActivity.this, Settings.class));
+        });
     }
 }
